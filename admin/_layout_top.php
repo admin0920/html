@@ -31,6 +31,8 @@ $paginaActiva = $paginaActiva ?? '';
     <a href="<?= url('admin/modulos.php') ?>" class="<?= $paginaActiva === 'modulos' ? 'activa' : '' ?>">🗂 Módulos</a>
     <a href="<?= url('admin/lecciones.php') ?>" class="<?= $paginaActiva === 'lecciones' ? 'activa' : '' ?>">📝 Lecciones</a>
     <a href="<?= url('admin/quizzes.php') ?>" class="<?= $paginaActiva === 'quizzes' ? 'activa' : '' ?>">🧠 Quizzes</a>
+    <a href="<?= url('admin/retos.php') ?>" class="<?= $paginaActiva === 'retos' ? 'activa' : '' ?>">🎯 Retos</a>
+    <a href="<?= url('admin/laboratorios.php') ?>" class="<?= $paginaActiva === 'laboratorios' ? 'activa' : '' ?>">🔬 Laboratorios</a>
     <a href="<?= url('admin/usuarios.php') ?>" class="<?= $paginaActiva === 'usuarios' ? 'activa' : '' ?>">👥 Usuarios</a>
   </aside>
   <div class="dp-admin-content">

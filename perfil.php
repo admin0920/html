@@ -12,7 +12,12 @@ $resultadosQuiz = db_query(
     [$usuario['id']]
 );
 
-$totalLeccionesCompletadas = db_query_una('SELECT COUNT(*) AS n FROM progreso WHERE usuario_id = ?', 'i', [$usuario['id']])['n'] ?? 0;
+$totalLeccionesCompletadas = contar_lecciones_completadas($usuario['id']);
+$insigniasGanadas = obtener_insignias_usuario($usuario['id']);
+$todasInsignias = obtener_todas_insignias();
+$idsGanadas = array_column($insigniasGanadas, 'id');
+$retosCompletados = contar_retos_completados($usuario['id']);
+$labsCompletados = contar_laboratorios_completados($usuario['id']);
 
 $tituloPagina = 'Mi perfil — ' . SITE_NAME;
 require_once __DIR__ . '/includes/header.php';
@@ -32,12 +37,30 @@ require_once __DIR__ . '/includes/header.php';
         <div class="dp-stats">
           <div class="dp-stat"><b><?= (int) $usuario['puntos'] ?></b><span>Puntos</span></div>
           <div class="dp-stat"><b><?= (int) $usuario['racha_dias'] ?> 🔥</b><span>Racha (días)</span></div>
-          <div class="dp-stat"><b><?= (int) $totalLeccionesCompletadas ?></b><span>Lecciones completadas</span></div>
+          <div class="dp-stat"><b><?= (int) $totalLeccionesCompletadas ?></b><span>Lecciones</span></div>
+          <div class="dp-stat"><b><?= $retosCompletados ?></b><span>Retos</span></div>
+          <div class="dp-stat"><b><?= $labsCompletados ?></b><span>Laboratorios</span></div>
+          <div class="dp-stat"><b><?= count($insigniasGanadas) ?>/<?= count($todasInsignias) ?></b><span>Insignias</span></div>
         </div>
+        <p class="dp-mt" style="margin-bottom:0;">
+          <span class="dp-badge dp-badge-admin"><?= $usuario['modo_pro'] ? '🚀 Modo PRO' : h(nombre_plan($usuario['plan_ritmo'])) ?></span>
+          <a href="<?= url('roadmap.php') ?>" style="margin-left:10px;font-size:.85rem;">Ver / cambiar plan →</a>
+        </p>
       </div>
     </div>
 
-    <h2>Tu progreso por curso</h2>
+    <h2>🏅 Insignias</h2>
+    <div class="dp-badges-grid dp-mt">
+      <?php foreach ($todasInsignias as $ins): ?>
+        <?php $obtenida = in_array($ins['id'], $idsGanadas, true); ?>
+        <div class="dp-badge-chip <?= $obtenida ? 'dp-badge-obtenida' : 'dp-badge-bloqueada' ?>" title="<?= h($ins['descripcion']) ?>">
+          <span class="dp-badge-icono"><?= $obtenida ? h($ins['icono']) : '🔒' ?></span>
+          <span class="dp-badge-nombre"><?= h($ins['nombre']) ?></span>
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+    <h2 class="dp-mt">Tu progreso por curso</h2>
     <div class="dp-grid dp-mt">
       <?php foreach ($cursos as $curso): ?>
         <?php $p = progreso_curso($usuario['id'], $curso['id']); ?>

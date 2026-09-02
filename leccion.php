@@ -23,8 +23,12 @@ $adyacentes = lecciones_adyacentes($leccion['curso_id'], (int) $moduloActual['or
 $mensaje = '';
 if ($usuario && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['completar']) && csrf_valido()) {
     marcar_leccion_completada($usuario['id'], $leccion['id']);
+    $_SESSION['dp_insignias_nuevas'] = evaluar_insignias($usuario['id']);
     redirigir('leccion.php?slug=' . urlencode($slug) . '&completada=1');
 }
+
+$insigniasNuevas = $_SESSION['dp_insignias_nuevas'] ?? [];
+unset($_SESSION['dp_insignias_nuevas']);
 
 $completada = $usuario && leccion_completada($usuario['id'], $leccion['id']);
 $quiz = db_query_una('SELECT * FROM quizzes WHERE leccion_id = ?', 'i', [$leccion['id']]);
@@ -59,6 +63,9 @@ require_once __DIR__ . '/includes/header.php';
 
       <?php if (isset($_GET['completada'])): ?>
         <div class="dp-alert dp-alert-success">¡Lección marcada como completada! +10 puntos 🎉</div>
+        <?php foreach ($insigniasNuevas as $ins): ?>
+          <div class="dp-alert dp-alert-success">🏅 ¡Nueva insignia desbloqueada! <?= h($ins['icono'] . ' ' . $ins['nombre']) ?> (+<?= (int) $ins['puntos_bonus'] ?> pts)</div>
+        <?php endforeach; ?>
       <?php endif; ?>
 
       <?= $leccion['contenido'] /* contenido HTML controlado por el admin */ ?>

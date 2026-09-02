@@ -10,7 +10,7 @@ function usuario_actual(): ?array
     if ($cache !== null) {
         return $cache;
     }
-    $cache = db_query_una('SELECT id, nombre, email, rol, avatar, puntos, racha_dias, ultima_actividad FROM usuarios WHERE id = ?', 'i', [$_SESSION['usuario_id']]);
+    $cache = db_query_una('SELECT id, nombre, email, rol, plan_ritmo, modo_pro, avatar, puntos, racha_dias, ultima_actividad, creado_en FROM usuarios WHERE id = ?', 'i', [$_SESSION['usuario_id']]);
     return $cache;
 }
 

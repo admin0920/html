@@ -47,7 +47,9 @@ a:hover { text-decoration: underline; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  min-height: 64px;
+  padding: 10px 0;
+  gap: 16px;
 }
 .dp-brand {
   font-weight: 800;
@@ -59,7 +61,9 @@ a:hover { text-decoration: underline; }
 .dp-nav {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .dp-nav a { color: var(--texto); font-weight: 500; text-decoration: none; }
 .dp-nav a:hover { color: var(--primario); }
@@ -346,10 +350,97 @@ a:hover { text-decoration: underline; }
   .dp-burger { display: block; }
   .dp-nav {
     display: none;
-    position: absolute; top: 64px; left: 0; right: 0;
+    position: absolute; top: 100%; left: 0; right: 0;
     background: white; flex-direction: column; align-items: flex-start;
     padding: 16px 20px; border-bottom: 1px solid var(--borde); gap: 14px;
   }
   .dp-nav.abierto { display: flex; }
   .dp-hero h1 { font-size: 1.9rem; }
+}
+
+/* ---------- Roadmap ---------- */
+.dp-roadmap-track {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 10px;
+}
+.dp-roadmap-nodo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--borde);
+  background: var(--blanco);
+  text-decoration: none;
+  color: var(--texto);
+}
+.dp-roadmap-nodo:hover { text-decoration: none; }
+.dp-roadmap-icono { font-size: 1.2rem; }
+.dp-roadmap-titulo { font-weight: 600; font-size: .92rem; }
+.dp-roadmap-meta { font-size: .78rem; color: var(--texto-suave); }
+.dp-roadmap-completada { border-color: #bbf7d0; background: #f0fdf4; }
+.dp-roadmap-disponible { border-color: var(--primario); box-shadow: 0 2px 8px rgba(99,102,241,.15); }
+.dp-roadmap-bloqueada { opacity: .55; cursor: not-allowed; }
+
+/* ---------- Insignias ---------- */
+.dp-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.dp-badge-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--borde);
+  text-align: center;
+  background: var(--blanco);
+}
+.dp-badge-icono { font-size: 1.8rem; }
+.dp-badge-nombre { font-size: .78rem; font-weight: 600; }
+.dp-badge-obtenida { border-color: #fde68a; background: #fffbeb; }
+.dp-badge-bloqueada { opacity: .5; }
+
+/* ---------- Juegos / Arcade ---------- */
+.dp-juego-lista { list-style: none; margin: 0 0 16px; padding: 0; }
+.dp-juego-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #f8fafc;
+}
+.dp-juego-item code { font-family: 'Consolas', monospace; font-size: .85rem; white-space: pre; }
+.dp-juego-controles button {
+  border: 1px solid var(--borde);
+  background: white;
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 4px;
+}
+.dp-juego-codigo {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: .88rem;
+  white-space: pre-wrap;
+}
+.dp-juego-opciones { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+
+@media (max-width: 700px) {
+  .dp-roadmap-track { grid-template-columns: 1fr; }
+  .dp-badges-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
 }

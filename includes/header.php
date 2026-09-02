@@ -20,8 +20,11 @@ $tituloPagina = $tituloPagina ?? SITE_NAME;
   <div class="dp-container dp-navbar-inner">
     <a href="<?= url('index.php') ?>" class="dp-brand">💻 Dique <span>Programando</span></a>
     <nav class="dp-nav" id="dpNav">
-      <a href="<?= url('index.php') ?>">Inicio</a>
       <a href="<?= url('cursos.php') ?>">Cursos</a>
+      <a href="<?= url('roadmap.php') ?>">Roadmap 🗺️</a>
+      <a href="<?= url('retos.php') ?>">Retos 🎯</a>
+      <a href="<?= url('laboratorio.php') ?>">Laboratorio 🔬</a>
+      <a href="<?= url('juegos.php') ?>">Juegos 🎮</a>
       <a href="<?= url('sandbox.php') ?>">Sandbox 🧪</a>
       <?php if ($usuario): ?>
         <a href="<?= url('perfil.php') ?>">Mi perfil</a>
