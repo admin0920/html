@@ -39,6 +39,7 @@ $js = $solucionGuardada['js'] ?? $lab['js_inicial'] ?? '';
 $insigniasNuevas = $_SESSION['dp_insignias_nuevas'] ?? [];
 unset($_SESSION['dp_insignias_nuevas']);
 
+$necesitaEditor = true;
 $tituloPagina = $lab['titulo'] . ' — ' . SITE_NAME;
 require_once __DIR__ . '/includes/header.php';
 ?>

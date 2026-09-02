@@ -10,6 +10,7 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="dp-hero">
   <div class="dp-container">
+    <img src="<?= url('assets/img/isotipo-web.png') ?>" alt="Dique Programando" class="dp-hero-logo">
     <h1>Aprende a programar desde 0 🚀</h1>
     <p>Cursos gratuitos de HTML, CSS y JavaScript en español, con lecciones interactivas, editor de código en vivo y ejercicios prácticos.</p>
     <div class="dp-hero-actions">

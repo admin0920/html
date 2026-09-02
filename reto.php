@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['completar'])) {
 
 $completado = $usuario && reto_completado($usuario['id'], $reto['id']);
 
+$necesitaEditor = true;
 $tituloPagina = $reto['titulo'] . ' — ' . SITE_NAME;
 require_once __DIR__ . '/includes/header.php';
 ?>

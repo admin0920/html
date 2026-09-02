@@ -33,6 +33,7 @@ unset($_SESSION['dp_insignias_nuevas']);
 $completada = $usuario && leccion_completada($usuario['id'], $leccion['id']);
 $quiz = db_query_una('SELECT * FROM quizzes WHERE leccion_id = ?', 'i', [$leccion['id']]);
 
+$necesitaEditor = true;
 $tituloPagina = $leccion['titulo'] . ' — ' . SITE_NAME;
 require_once __DIR__ . '/includes/header.php';
 ?>

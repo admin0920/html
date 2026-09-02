@@ -24,6 +24,7 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 
 <div class="dp-form-box">
+  <img src="<?= url('assets/img/isotipo-web.png') ?>" alt="Dique Programando" class="dp-form-logo">
   <h1>Crea tu cuenta</h1>
   <p class="dp-form-sub">Gratis, sin límites de tiempo</p>
   <?php if (isset($_GET['google_error'])): ?><div class="dp-alert dp-alert-error">No se pudo continuar con Google. Intenta de nuevo o crea tu cuenta con correo y contraseña.</div><?php endif; ?>

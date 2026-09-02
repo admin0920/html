@@ -18,6 +18,18 @@ Plataforma completa en PHP + MySQL para aprender **HTML, CSS y JavaScript desde 
 - Quizzes de repaso al final de las lecciones, con resultados guardados.
 - Panel de administración en `/admin` (**sin enlace visible en el sitio** — se accede solo escribiendo la URL) para gestionar cursos, módulos, lecciones, quizzes, retos, laboratorios y usuarios sin tocar código.
 - Diseño 100% responsive (menú hamburguesa en móvil, grids adaptables) y botones con estados hover/focus pulidos, sin dependencias de Composer/Node — solo PHP plano compatible con hosting compartido.
+- Marca propia integrada: logo e isotipo en la barra de navegación, favicon (todas las resoluciones, incluido apple-touch-icon), login/registro, footer y panel de administración.
+
+## 🎨 Cambiar el logo
+
+El archivo fuente vive en `icono/icono.png` (bloqueado al público por `.htaccess`). A partir de él se generaron automáticamente:
+
+- `assets/img/isotipo.png` — el ícono circular recortado en alta resolución (sin el texto "Dique Programando"), usado como fuente para generar los favicons.
+- `assets/img/isotipo-web.png` — versión liviana (260×260, ~65 KB) del isotipo, la que realmente se usa en la navbar, login, footer y hero para no cargar cada página con una imagen pesada.
+- `assets/img/favicon-16.png` a `favicon-512.png` — todos los tamaños de favicon / apple-touch-icon.
+- `assets/img/logo-completo.png` — el logotipo completo con el texto, por si lo necesitas en algún lugar.
+
+Si más adelante quieres cambiar el logo, reemplaza `icono/icono.png` y pide que se regeneren estos archivos.
 
 ## 🚀 Cómo subir esto a InfinityFree
 

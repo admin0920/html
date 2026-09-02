@@ -1,7 +1,8 @@
 </main>
 <footer class="dp-footer">
   <div class="dp-container">
-    <p>🚀 <strong>Dique Programando</strong> &mdash; Aprende a programar desde 0, en español.</p>
+    <img src="<?= url('assets/img/isotipo-web.png') ?>" alt="Dique Programando" class="dp-footer-logo">
+    <p><strong>Dique Programando</strong> &mdash; Aprende a programar desde 0, en español.</p>
     <p class="dp-footer-small">&copy; <?= date('Y') ?> Dique Programando. Hecho con PHP + MySQL. Alojado en InfinityFree.</p>
     <p class="dp-footer-credito">
       Hecho con ❤️ por <strong>AT DIGITAL STUDIOS</strong>
@@ -13,6 +14,7 @@
     </p>
   </div>
 </footer>
+<?php if (!empty($necesitaEditor)): ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
@@ -21,6 +23,7 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<?php endif; ?>
 <script defer src="<?= url('assets/js/main.js') ?>"></script>
 </body>
 </html>

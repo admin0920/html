@@ -33,6 +33,7 @@ $defaultHtml = "<h1>¡Hola, Sandbox!</h1>\n<p>Escribe tu código y mira el resul
 $defaultCss = "body {\n  font-family: sans-serif;\n  text-align: center;\n  padding-top: 40px;\n}\nbutton {\n  background: #6366f1;\n  color: white;\n  border: none;\n  padding: 10px 20px;\n  border-radius: 8px;\n  cursor: pointer;\n}";
 $defaultJs = "document.getElementById('btn').addEventListener('click', function () {\n  alert('¡Funciona!');\n});";
 
+$necesitaEditor = true;
 $tituloPagina = 'Sandbox — ' . SITE_NAME;
 require_once __DIR__ . '/includes/header.php';
 ?>

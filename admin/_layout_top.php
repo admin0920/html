@@ -12,12 +12,16 @@ $paginaActiva = $paginaActiva ?? '';
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= h($tituloPagina) ?></title>
+<link rel="icon" type="image/png" sizes="32x32" href="<?= url('assets/img/favicon-32.png') ?>">
 <link rel="stylesheet" href="<?= url('assets/css/style.css') ?>">
 </head>
 <body>
 <header class="dp-navbar">
   <div class="dp-container dp-navbar-inner">
-    <a href="<?= url('index.php') ?>" class="dp-brand">💻 Dique <span>Programando</span> · Admin</a>
+    <a href="<?= url('index.php') ?>" class="dp-brand">
+      <img src="<?= url('assets/img/isotipo-web.png') ?>" alt="Dique Programando" class="dp-brand-icono">
+      Dique <span>Programando</span> · Admin
+    </a>
     <nav class="dp-nav">
       <a href="<?= url('index.php') ?>">Ver sitio</a>
       <a href="<?= url('logout.php') ?>" class="dp-btn dp-btn-outline">Salir</a>

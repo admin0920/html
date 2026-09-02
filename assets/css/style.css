@@ -52,12 +52,21 @@ a:hover { text-decoration: underline; }
   gap: 16px;
 }
 .dp-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 800;
   font-size: 1.2rem;
   color: var(--texto);
   text-decoration: none;
 }
 .dp-brand span { color: var(--primario); }
+.dp-brand-icono {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 .dp-nav {
   display: flex;
   align-items: center;
@@ -158,6 +167,7 @@ a:hover { text-decoration: underline; }
   padding: 70px 0;
   text-align: center;
 }
+.dp-hero-logo { width: 96px; height: 96px; object-fit: contain; margin: 0 auto 18px; display: block; filter: drop-shadow(0 8px 20px rgba(0,0,0,.25)); }
 .dp-hero h1 { font-size: 2.6rem; margin: 0 0 14px; }
 .dp-hero p { font-size: 1.15rem; opacity: .95; max-width: 640px; margin: 0 auto 30px; }
 .dp-hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
@@ -382,6 +392,7 @@ a:hover { text-decoration: underline; }
   padding: 38px;
   box-shadow: var(--sombra-fuerte);
 }
+.dp-form-logo { display: block; width: 64px; height: 64px; object-fit: contain; margin: 0 auto 14px; }
 .dp-form-box h1 { margin-top: 0; font-size: 1.6rem; text-align: center; }
 .dp-form-sub { text-align: center; color: var(--texto-suave); font-size: .9rem; margin-top: -8px; margin-bottom: 24px; }
 .dp-field { margin-bottom: 16px; }
@@ -474,6 +485,7 @@ a:hover { text-decoration: underline; }
 
 /* ---------- Footer ---------- */
 .dp-footer { background: #0f172a; color: #cbd5e1; padding: 34px 0; text-align: center; margin-top: 40px; }
+.dp-footer-logo { width: 48px; height: 48px; object-fit: contain; margin-bottom: 10px; }
 .dp-footer-small { font-size: .8rem; opacity: .7; margin-top: 6px; }
 .dp-footer-credito {
   display: flex;

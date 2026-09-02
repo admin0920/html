@@ -26,6 +26,7 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 
 <div class="dp-form-box">
+  <img src="<?= url('assets/img/isotipo-web.png') ?>" alt="Dique Programando" class="dp-form-logo">
   <h1>Bienvenido de nuevo</h1>
   <p class="dp-form-sub">Ingresa para continuar aprendiendo</p>
   <?php if ($avisoRedirigido): ?><div class="dp-alert dp-alert-error">Debes iniciar sesión para continuar.</div><?php endif; ?>

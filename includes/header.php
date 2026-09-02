@@ -11,13 +11,19 @@ $tituloPagina = $tituloPagina ?? SITE_NAME;
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= h($tituloPagina) ?></title>
 <meta name="description" content="Aprende HTML, CSS y JavaScript desde cero hasta avanzado, gratis y en español.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+<link rel="icon" type="image/png" sizes="32x32" href="<?= url('assets/img/favicon-32.png') ?>">
+<link rel="icon" type="image/png" sizes="16x16" href="<?= url('assets/img/favicon-16.png') ?>">
+<link rel="icon" type="image/png" sizes="192x192" href="<?= url('assets/img/favicon-192.png') ?>">
+<link rel="apple-touch-icon" sizes="180x180" href="<?= url('assets/img/favicon-180.png') ?>">
 <link rel="stylesheet" href="<?= url('assets/css/style.css') ?>">
 </head>
 <body>
 <header class="dp-navbar">
   <div class="dp-container dp-navbar-inner">
-    <a href="<?= url('index.php') ?>" class="dp-brand">💻 Dique <span>Programando</span></a>
+    <a href="<?= url('index.php') ?>" class="dp-brand">
+      <img src="<?= url('assets/img/isotipo-web.png') ?>" alt="Dique Programando" class="dp-brand-icono">
+      Dique <span>Programando</span>
+    </a>
     <nav class="dp-nav" id="dpNav">
       <a href="<?= url('cursos.php') ?>">Cursos</a>
       <a href="<?= url('roadmap.php') ?>">Roadmap 🗺️</a>
