@@ -338,6 +338,27 @@ a:hover { text-decoration: underline; }
 /* ---------- Footer ---------- */
 .dp-footer { background: #0f172a; color: #cbd5e1; padding: 34px 0; text-align: center; margin-top: 40px; }
 .dp-footer-small { font-size: .8rem; opacity: .7; margin-top: 6px; }
+.dp-footer-credito {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: .8rem;
+  opacity: .85;
+  margin-top: 14px;
+}
+.dp-footer-ig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+  color: white;
+  transition: transform .15s ease;
+}
+.dp-footer-ig:hover { transform: scale(1.1); text-decoration: none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
