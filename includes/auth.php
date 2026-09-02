@@ -10,7 +10,7 @@ function usuario_actual(): ?array
     if ($cache !== null) {
         return $cache;
     }
-    $cache = db_query_una('SELECT id, nombre, email, rol, plan_ritmo, modo_pro, avatar, puntos, racha_dias, ultima_actividad, creado_en FROM usuarios WHERE id = ?', 'i', [$_SESSION['usuario_id']]);
+    $cache = db_query_una('SELECT id, nombre, email, rol, plan_ritmo, modo_pro, avatar, puntos, racha_dias, ultima_actividad, creado_en, google_id FROM usuarios WHERE id = ?', 'i', [$_SESSION['usuario_id']]);
     return $cache;
 }
 
@@ -76,8 +76,8 @@ function iniciar_sesion_usuario(string $email, string $password): array
     $email = strtolower(trim($email));
     $usuario = db_query_una('SELECT id, password_hash FROM usuarios WHERE email = ?', 's', [$email]);
 
-    if (!$usuario || !password_verify($password, $usuario['password_hash'])) {
-        return ['ok' => false, 'error' => 'Correo o contraseña incorrectos.'];
+    if (!$usuario || !$usuario['password_hash'] || !password_verify($password, $usuario['password_hash'])) {
+        return ['ok' => false, 'error' => 'Correo o contraseña incorrectos. Si creaste tu cuenta con Google, usa el botón "Continuar con Google".'];
     }
 
     $_SESSION['usuario_id'] = $usuario['id'];
@@ -90,6 +90,40 @@ function cerrar_sesion_usuario(): void
 {
     unset($_SESSION['usuario_id']);
     session_destroy();
+}
+
+function google_login_disponible(): bool
+{
+    return GOOGLE_CLIENT_ID !== '' && GOOGLE_CLIENT_SECRET !== '' && function_exists('curl_init');
+}
+
+/** Inicia sesión (o crea la cuenta) de un usuario autenticado con Google. */
+function iniciar_sesion_con_google(string $googleId, string $email, string $nombre, ?string $avatar): array
+{
+    $email = strtolower(trim($email));
+
+    $usuario = db_query_una('SELECT id FROM usuarios WHERE google_id = ?', 's', [$googleId]);
+
+    if (!$usuario) {
+        // ¿Ya existe una cuenta con ese correo (creada con contraseña)? La vinculamos.
+        $usuario = db_query_una('SELECT id FROM usuarios WHERE email = ?', 's', [$email]);
+        if ($usuario) {
+            db_ejecutar('UPDATE usuarios SET google_id = ?, avatar = COALESCE(avatar, ?) WHERE id = ?', 'ssi', [$googleId, $avatar, $usuario['id']]);
+        } else {
+            $nombreFinal = $nombre !== '' ? $nombre : explode('@', $email)[0];
+            $id = db_ejecutar(
+                'INSERT INTO usuarios (nombre, email, password_hash, rol, google_id, avatar, ultima_actividad) VALUES (?, ?, NULL, "usuario", ?, ?, CURDATE())',
+                'ssss',
+                [$nombreFinal, $email, $googleId, $avatar]
+            );
+            $usuario = ['id' => $id];
+        }
+    }
+
+    $_SESSION['usuario_id'] = $usuario['id'];
+    actualizar_racha($usuario['id']);
+
+    return ['ok' => true];
 }
 
 /** Actualiza la racha de días consecutivos de actividad del usuario */

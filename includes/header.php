@@ -28,9 +28,6 @@ $tituloPagina = $tituloPagina ?? SITE_NAME;
       <a href="<?= url('sandbox.php') ?>">Sandbox 🧪</a>
       <?php if ($usuario): ?>
         <a href="<?= url('perfil.php') ?>">Mi perfil</a>
-        <?php if ($usuario['rol'] === 'admin'): ?>
-          <a href="<?= url('admin/index.php') ?>">Admin ⚙️</a>
-        <?php endif; ?>
         <a href="<?= url('logout.php') ?>" class="dp-btn dp-btn-outline">Salir</a>
       <?php else: ?>
         <a href="<?= url('login.php') ?>">Ingresar</a>

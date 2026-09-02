@@ -4,10 +4,11 @@ Plataforma completa en PHP + MySQL para aprender **HTML, CSS y JavaScript desde 
 
 ## ✨ Funciones incluidas
 
-- **37 lecciones** de HTML, CSS y JavaScript (de básico a avanzado: variables CSS, POO en JS, fetch API, accesibilidad, SEO, localStorage, etc.) repartidas en 15 módulos.
+- **153 lecciones** (51 de HTML, 51 de CSS, 51 de JavaScript) de 0 a avanzado, repartidas en 39 módulos: desde la primera etiqueta hasta POO, fetch API, closures, Grid avanzado, accesibilidad, proyectos finales, etc.
 - Editor de código en vivo (HTML/CSS/JS) con vista previa instantánea en cada lección.
+- **🔑 Inicio de sesión con Google** (OAuth 2.0) además de correo/contraseña — ideal para una plataforma multiusuario.
 - **🗺️ Roadmap personalizado**: cada usuario elige un plan de estudio (Relajado / Regular / Intensivo) que va desbloqueando lecciones con el tiempo, o activa el **Modo PRO** para desbloquear todo al instante.
-- **🎯 Retos de código**: mini ejercicios de HTML/CSS/JS con comprobación automática en el navegador (sin backend de ejecución de código).
+- **🎯 20 retos de código**: mini ejercicios de HTML/CSS/JS con comprobación automática en el navegador (sin backend de ejecución de código).
 - **🔬 Laboratorio de práctica**: 5 proyectos reales (tarjeta de perfil, galería con Grid, to-do list, calculadora, landing page) con guardado de progreso y checklist de requisitos.
 - **🎮 Arcade de 3 juegos educativos**: "Ordena el código", "Detective de bugs" y "Quiz relámpago", con tabla de mejores puntajes.
 - **🏅 Sistema de insignias** (15 logros) por lecciones, racha, retos, laboratorios y cursos completos, con bonus de puntos.
@@ -15,8 +16,8 @@ Plataforma completa en PHP + MySQL para aprender **HTML, CSS y JavaScript desde 
 - Registro / inicio de sesión de usuarios con contraseñas cifradas (`password_hash`).
 - Seguimiento de progreso por lección y por curso (barras de progreso), puntos y racha de días de estudio.
 - Quizzes de repaso al final de las lecciones, con resultados guardados.
-- Panel de administración (`/admin`) para gestionar cursos, módulos, lecciones, quizzes, **retos, laboratorios** y usuarios sin tocar código.
-- Diseño 100% responsive (menú hamburguesa en móvil, grids adaptables), sin dependencias de Composer/Node — solo PHP plano compatible con hosting compartido.
+- Panel de administración en `/admin` (**sin enlace visible en el sitio** — se accede solo escribiendo la URL) para gestionar cursos, módulos, lecciones, quizzes, retos, laboratorios y usuarios sin tocar código.
+- Diseño 100% responsive (menú hamburguesa en móvil, grids adaptables) y botones con estados hover/focus pulidos, sin dependencias de Composer/Node — solo PHP plano compatible con hosting compartido.
 
 ## 🚀 Cómo subir esto a InfinityFree
 
@@ -31,9 +32,11 @@ En el **vPanel** de InfinityFree → **MySQL Databases** → crea una base de da
 - Nombre de la base de datos (ej. `if0_XXXXXXXX_diqueprogramando`)
 
 ### 3. Importa el esquema
-Entra a **phpMyAdmin** desde el vPanel, selecciona tu base de datos, ve a la pestaña **Importar** y sube el archivo `config/database.sql` (incluye todas las tablas y el contenido: 37 lecciones, retos, laboratorios e insignias, más un usuario administrador).
+Entra a **phpMyAdmin** desde el vPanel, selecciona tu base de datos, ve a la pestaña **Importar** y sube el archivo `config/database.sql` (incluye todas las tablas y el contenido: 153 lecciones, 20 retos, 5 laboratorios e insignias, más un usuario administrador).
 
-> ¿Ya tenías la plataforma instalada antes de esta actualización? No vuelvas a importar `database.sql` completo (fallaría porque las tablas ya existen). En su lugar, importa solo `config/actualizacion_v2.sql`, que agrega las tablas y lecciones nuevas sin tocar lo que ya tienes.
+> ¿Ya tenías la plataforma instalada antes de esta actualización? No vuelvas a importar `database.sql` completo (fallaría porque las tablas ya existen). En su lugar importa, **en este orden**, los archivos de actualización que te falten:
+> 1. `config/actualizacion_v2.sql` (si venías de la primera versión: agrega roadmap, retos, laboratorios e insignias)
+> 2. `config/actualizacion_v3.sql` (agrega el login con Google y las 116 lecciones y retos nuevos que llevan el total a 153 lecciones y 20 retos)
 
 ### 4. Configura la conexión
 Edita `config/config.php` y reemplaza:
@@ -46,19 +49,35 @@ define('DB_NAME', 'if0_XXXXXXXX_diqueprogramando');
 define('SITE_URL', 'https://tudominio.infinityfreeapp.com');
 ```
 
-### 5. Sube los archivos
+### 5. (Opcional) Activa el inicio de sesión con Google
+1. Ve a https://console.cloud.google.com/apis/credentials y crea un proyecto.
+2. Configura la pantalla de consentimiento OAuth (tipo "Externo") con el nombre de tu sitio.
+3. Crea credenciales → **ID de cliente de OAuth** → tipo "Aplicación web".
+4. En "URIs de redireccionamiento autorizados" agrega exactamente tu `SITE_URL` + `/auth_google_callback.php` (ej. `https://tudominio.infinityfreeapp.com/auth_google_callback.php`).
+5. Copia el **Client ID** y **Client Secret** en `config/config.php`:
+
+```php
+define('GOOGLE_CLIENT_ID', 'tu-id.apps.googleusercontent.com');
+define('GOOGLE_CLIENT_SECRET', 'tu-secreto');
+```
+
+Si dejas estos dos valores vacíos (como vienen por defecto), el botón "Continuar con Google" simplemente no aparece y el sitio funciona normal solo con correo/contraseña.
+
+> ⚠️ **Importante sobre InfinityFree**: el login con Google necesita que el servidor haga peticiones salientes (cURL) a los servidores de Google. El plan **gratuito** de InfinityFree a veces bloquea este tipo de conexiones salientes para prevenir abusos. Si configuras todo correctamente y el botón de Google sigue sin funcionar, ese es probablemente el motivo — no es un error del código. El resto de la plataforma no depende de esto y sigue funcionando perfecto.
+
+### 6. Sube los archivos
 Sube **todo el contenido** de esta carpeta (no la carpeta en sí) dentro de `htdocs/` usando el **Administrador de archivos** del vPanel o un cliente FTP (FileZilla) con los datos FTP que te da InfinityFree.
 
-### 6. Accede al panel de administración
-Ve a `https://tudominio.com/login.php` e inicia sesión con el usuario administrador ya incluido en el seed:
+### 7. Accede al panel de administración
+El panel de administración **no tiene ningún enlace visible** en el sitio público (es intencional, por seguridad). Para entrar, ve directamente a `https://tudominio.com/admin/` e inicia sesión con el usuario administrador ya incluido en el seed:
 
 - **Email:** `admin@diqueprogramando.com`
 - **Contraseña:** `Admin123!`
 
 ⚠️ **Cambia esta contraseña inmediatamente** (puedes registrarte con un nuevo usuario, hacerlo admin desde `/admin/usuarios.php`, y luego eliminar o quitarle el rol admin al usuario por defecto).
 
-### 7. ¡Listo!
-Desde `/admin` puedes crear más cursos, módulos, lecciones y quizzes sin tocar código.
+### 8. ¡Listo!
+Desde `/admin` puedes crear más cursos, módulos, lecciones, retos, laboratorios y quizzes sin tocar código.
 
 ## 📁 Estructura del proyecto
 
