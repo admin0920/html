@@ -5,7 +5,7 @@ Plataforma completa en PHP + MySQL para aprender **HTML, CSS y JavaScript desde 
 ## ✨ Funciones incluidas
 
 - **153 lecciones** (51 de HTML, 51 de CSS, 51 de JavaScript) de 0 a avanzado, repartidas en 39 módulos: desde la primera etiqueta hasta POO, fetch API, closures, Grid avanzado, accesibilidad, proyectos finales, etc.
-- Editor de código en vivo (HTML/CSS/JS) con vista previa instantánea en cada lección.
+- **Editor tipo IDE** (CodeMirror: números de línea, resaltado de sintaxis, tema oscuro) en cada lección, reto, laboratorio y en el Sandbox, con vista previa instantánea y una **consola integrada** (como las DevTools del navegador) que muestra `console.log()`, `console.warn()` y errores en tiempo real. Atajo `Ctrl+Enter` para ejecutar.
 - **🔑 Inicio de sesión con Google** (OAuth 2.0) además de correo/contraseña — ideal para una plataforma multiusuario.
 - **🗺️ Roadmap personalizado**: cada usuario elige un plan de estudio (Relajado / Regular / Intensivo) que va desbloqueando lecciones con el tiempo, o activa el **Modo PRO** para desbloquear todo al instante.
 - **🎯 20 retos de código**: mini ejercicios de HTML/CSS/JS con comprobación automática en el navegador (sin backend de ejecución de código).

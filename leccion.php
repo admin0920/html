@@ -87,7 +87,7 @@ require_once __DIR__ . '/includes/header.php';
             <textarea class="dp-code" data-code="js" spellcheck="false"><?= h($leccion['codigo_js'] ?? '') ?></textarea>
           </div>
           <div class="dp-editor-toolbar">
-            <span>✏️ Edita el código y mira el resultado en vivo</span>
+            <span>✏️ Edita el código · <span class="dp-atajo-teclado">Ctrl+Enter</span> para ejecutar</span>
             <button type="button" class="dp-btn dp-btn-secundario" data-accion="ejecutar" style="padding:6px 14px;">▶ Ejecutar</button>
           </div>
           <div class="dp-preview-wrap"><iframe title="Resultado"></iframe></div>

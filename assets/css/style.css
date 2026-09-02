@@ -280,14 +280,23 @@ a:hover { text-decoration: underline; }
   outline: none;
   tab-size: 2;
 }
+/* CodeMirror sustituye al textarea plano: que ocupe el mismo espacio */
+.dp-editor .CodeMirror {
+  height: 180px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: .9rem;
+}
 .dp-editor-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #1e293b;
   padding: 8px 16px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .dp-editor-toolbar span { color: #94a3b8; font-size: .8rem; }
+.dp-editor-toolbar .dp-editor-toolbar-derecha { display: flex; align-items: center; gap: 10px; }
 .dp-preview-wrap { border-top: 1px solid var(--borde); }
 .dp-preview-wrap iframe {
   width: 100%;
@@ -297,25 +306,70 @@ a:hover { text-decoration: underline; }
   display: block;
 }
 
+/* Consola tipo DevTools, se crea automáticamente bajo cada vista previa */
+.dp-consola-salida {
+  background: #0b1120;
+  color: #e2e8f0;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: .82rem;
+  max-height: 140px;
+  overflow-y: auto;
+  border-top: 1px solid #1e293b;
+}
+.dp-consola-salida:empty::before {
+  content: "Consola — aquí verás console.log() y errores al ejecutar tu código";
+  display: block;
+  padding: 10px 14px;
+  color: #64748b;
+  font-style: italic;
+}
+.dp-consola-linea {
+  padding: 5px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.dp-consola-prefijo { color: #64748b; margin-right: 4px; }
+.dp-consola-error { color: #f87171; }
+.dp-consola-warn { color: #fbbf24; }
+.dp-consola-log, .dp-consola-info { color: #e2e8f0; }
+
 /* Sandbox de pantalla completa */
+.dp-sandbox-pagina {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+}
 .dp-sandbox-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  height: calc(100vh - 64px);
+  flex: 1;
+  min-height: 0;
 }
 .dp-sandbox-editors { display: flex; flex-direction: column; border-right: 1px solid var(--borde); }
 .dp-sandbox-editors .dp-editor { border: none; border-radius: 0; flex: 1; display: flex; flex-direction: column; }
 .dp-sandbox-editors .dp-editor-panel.activa { flex: 1; display: flex; }
 .dp-sandbox-editors textarea.dp-code { flex: 1; min-height: 0; }
+.dp-sandbox-editors .dp-editor-panel.activa .CodeMirror { flex: 1; height: 100%; }
 .dp-sandbox-preview { display: flex; flex-direction: column; }
 .dp-sandbox-preview iframe { flex: 1; width: 100%; border: none; background: white; }
+.dp-sandbox-preview .dp-consola-salida { max-height: 200px; flex-shrink: 0; }
 .dp-sandbox-bar {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
   padding: 10px 16px; background: var(--blanco); border-bottom: 1px solid var(--borde);
 }
 .dp-sandbox-bar input[type=text] {
-  flex: 1; padding: 8px 12px; border: 1px solid var(--borde); border-radius: 8px;
+  flex: 1; min-width: 140px; padding: 8px 12px; border: 1px solid var(--borde); border-radius: 8px;
+}
+.dp-atajo-teclado {
+  display: inline-block;
+  background: #1e293b;
+  color: #cbd5e1;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: .72rem;
 }
 
 /* ---------- Formularios ---------- */
@@ -448,7 +502,10 @@ a:hover { text-decoration: underline; }
   .dp-curso-layout { grid-template-columns: 1fr; }
   .dp-sidebar { position: static; max-height: none; }
   .dp-admin-layout { grid-template-columns: 1fr; }
-  .dp-sandbox-layout { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; height: auto; }
+  .dp-sandbox-pagina { height: auto; }
+  .dp-sandbox-layout { grid-template-columns: 1fr; grid-template-rows: auto auto; }
+  .dp-sandbox-editors .dp-editor-panel.activa .CodeMirror { height: 260px; }
+  .dp-sandbox-preview iframe { height: 300px; }
 }
 @media (max-width: 700px) {
   .dp-burger { display: block; }

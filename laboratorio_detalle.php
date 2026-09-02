@@ -88,7 +88,7 @@ require_once __DIR__ . '/includes/header.php';
           <div class="dp-editor-panel" data-panel="css"><textarea class="dp-code" data-code="css" spellcheck="false" style="min-height:280px;"><?= h($css) ?></textarea></div>
           <div class="dp-editor-panel" data-panel="js"><textarea class="dp-code" data-code="js" spellcheck="false" style="min-height:280px;"><?= h($js) ?></textarea></div>
           <div class="dp-editor-toolbar">
-            <span>✏️ Construye tu proyecto</span>
+            <span>✏️ Construye tu proyecto · <span class="dp-atajo-teclado">Ctrl+Enter</span> para ejecutar</span>
             <button type="button" class="dp-btn dp-btn-secundario" data-accion="ejecutar" style="padding:6px 14px;">▶ Ejecutar</button>
           </div>
           <div class="dp-preview-wrap"><iframe title="Resultado" style="height:360px;"></iframe></div>
@@ -109,9 +109,9 @@ require_once __DIR__ . '/includes/header.php';
 
 <script>
 document.getElementById('labForm').addEventListener('submit', function () {
-  document.getElementById('inputHtml').value = document.querySelector('[data-code="html"]').value;
-  document.getElementById('inputCss').value = document.querySelector('[data-code="css"]').value;
-  document.getElementById('inputJs').value = document.querySelector('[data-code="js"]').value;
+  document.getElementById('inputHtml').value = dpValorEditor(document.querySelector('[data-code="html"]'));
+  document.getElementById('inputCss').value = dpValorEditor(document.querySelector('[data-code="css"]'));
+  document.getElementById('inputJs').value = dpValorEditor(document.querySelector('[data-code="js"]'));
 });
 </script>
 

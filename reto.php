@@ -54,7 +54,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="dp-editor-panel" data-panel="css"><textarea class="dp-code" data-code="css" spellcheck="false"><?= h($reto['css_inicial'] ?? '') ?></textarea></div>
         <div class="dp-editor-panel" data-panel="js"><textarea class="dp-code" data-code="js" spellcheck="false"><?= h($reto['js_inicial'] ?? '') ?></textarea></div>
         <div class="dp-editor-toolbar">
-          <span>✏️ Escribe tu solución</span>
+          <span>✏️ Escribe tu solución · <span class="dp-atajo-teclado">Ctrl+Enter</span> para ejecutar</span>
           <button type="button" class="dp-btn dp-btn-secundario" data-accion="ejecutar" style="padding:6px 14px;">▶ Ejecutar</button>
         </div>
         <div class="dp-preview-wrap"><iframe title="Resultado" id="retoIframe"></iframe></div>

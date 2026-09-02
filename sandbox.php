@@ -37,6 +37,7 @@ $tituloPagina = 'Sandbox — ' . SITE_NAME;
 require_once __DIR__ . '/includes/header.php';
 ?>
 
+<div class="dp-sandbox-pagina">
 <div class="dp-sandbox-bar">
   <strong>🧪 Sandbox</strong>
   <?php if ($usuario): ?>
@@ -68,7 +69,7 @@ require_once __DIR__ . '/includes/header.php';
         <button type="button" data-tab="css">CSS</button>
         <button type="button" data-tab="js">JS</button>
       </div>
-      <div class="dp-editor-panel activa" data-panel="html" style="flex:1;display:flex;">
+      <div class="dp-editor-panel activa" data-panel="html">
         <textarea class="dp-code" data-code="html" spellcheck="false"><?= h($proyecto['html'] ?? $defaultHtml) ?></textarea>
       </div>
       <div class="dp-editor-panel" data-panel="css" style="flex:1;">
@@ -77,11 +78,16 @@ require_once __DIR__ . '/includes/header.php';
       <div class="dp-editor-panel" data-panel="js" style="flex:1;">
         <textarea class="dp-code" data-code="js" spellcheck="false"><?= h($proyecto['js'] ?? $defaultJs) ?></textarea>
       </div>
+      <div class="dp-editor-toolbar">
+        <span>✏️ <span class="dp-atajo-teclado">Ctrl+Enter</span> para ejecutar</span>
+        <button type="button" class="dp-btn dp-btn-secundario dp-btn-sm" data-accion="ejecutar">▶ Ejecutar</button>
+      </div>
     </div>
   </div>
   <div class="dp-sandbox-preview">
     <iframe title="Resultado en vivo"></iframe>
   </div>
+</div>
 </div>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
