@@ -1,0 +1,15 @@
+DirectoryIndex index.php
+
+# Evita listar directorios
+Options -Indexes
+
+# Bloquea el acceso directo a archivos sensibles
+<FilesMatch "\.(sql|log|md)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_php.c>
+  php_flag display_errors off
+</IfModule>
+
+ErrorDocument 404 /index.php
