@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
 function initEditor(editor) {
   var tabs = editor.querySelectorAll('.dp-editor-tabs button');
   var panels = editor.querySelectorAll('.dp-editor-panel');
-  var iframe = editor.querySelector('iframe');
+  var scope = editor.closest('.dp-sandbox-layout') || editor;
+  var iframe = scope.querySelector('iframe');
 
   tabs.forEach(function (tab) {
     tab.addEventListener('click', function () {
